@@ -6,9 +6,8 @@
     "defaultRequire": 1
   },
   "client": [
-    "block.BlockMixin",
-    "environment.ClientWorldMixin",
     "block.AmethystBlockMixin",
+    "block.BlockMixin",
     "block.ButtonBlockMixin",
     "block.CaveVinesBlockMixin",
     "block.LeavesBlockMixin",
@@ -16,9 +15,15 @@
     "block.RedstoneBlockMixin",
     "block.TripwireHookBlockMixin",
     "block.WeightedPressurePlateBlockMixin",
+    "environment.ClientWorldMixin",
+    "reaction.BatEntityMixin",
     "reaction.BubbleColumnUpParticleMixin",
+    "reaction.CatEntityMixin",
     "reaction.ExplosionMixin",
+    "reaction.FoxEntityMixin",
     "reaction.RainSplashParticleMixin",
+    "reaction.PlayerEntityMixin",
+    "reaction.VillagerEntityMixin",
     "reaction.WaterBubbleParticleMixin"
   ]
 }

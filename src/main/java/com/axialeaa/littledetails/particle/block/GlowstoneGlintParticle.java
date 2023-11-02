@@ -1,7 +1,7 @@
-package com.axialeaa.littledetails.particle;
+package com.axialeaa.littledetails.particle.block;
 
-import com.axialeaa.littledetails.MainEntrypoint;
 import com.axialeaa.littledetails.config.Configs;
+import com.axialeaa.littledetails.helpers.ParticleLogic;
 import fi.dy.masa.malilib.util.Color4f;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -11,35 +11,29 @@ import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
-public class AmethystTwinkleParticle extends SpriteBillboardParticle {
+public class GlowstoneGlintParticle extends SpriteBillboardParticle {
 
-    private final Color4f color = MainEntrypoint.getRandomColorFrom(random, Configs.Colors.SEA_LANTERN_SHIMMER_PARTICLE_COLORS);
-
-    protected AmethystTwinkleParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
-        super(world, x, y, z, 0.0, 0.0, 0.0);
-        this.velocityX = velocityX;
-        this.velocityY = velocityY;
-        this.velocityZ = velocityZ;
-        this.ascending = true;
-        this.scale *= 0.75F;
+    protected GlowstoneGlintParticle(ClientWorld world, double x, double y, double z, SpriteProvider spriteProvider) {
+        super(world, x, y, z);
+        this.scale *= 0.65F;
+        Color4f color = ParticleLogic.getRandomColorFrom(random, Configs.Colors.GLOWSTONE_GLINT_PARTICLE_COLORS);
         this.red = color.r;
         this.green = color.g;
         this.blue = color.b;
         this.alpha = color.a;
         this.collidesWithWorld = false;
-        this.maxAge = this.random.nextInt(30) + 20;
+        this.maxAge = this.random.nextInt(20) + 15;
         this.setSpriteForAge(spriteProvider);
     }
 
     @Override
     public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
+        return alpha < 1 ? ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT : ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
     }
 
-    @Override
-    public void tick() {
-        super.tick();
-        this.alpha = (-(1/(float)maxAge) * age + 1) * color.a;
+    public float getSize(float tickDelta) {
+        float f = ((float)this.age + tickDelta) / (float)this.maxAge;
+        return this.scale * (1.0F - f * f * 0.5F);
     }
 
     public int getBrightness(float tint) {
@@ -65,7 +59,7 @@ public class AmethystTwinkleParticle extends SpriteBillboardParticle {
         }
 
         public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-            return new AmethystTwinkleParticle(world, x, y, z, 0.0, 0.0, 0.0, this.spriteProvider);
+            return new GlowstoneGlintParticle(world, x, y, z, this.spriteProvider);
         }
     }
 

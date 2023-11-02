@@ -1,6 +1,6 @@
-package com.axialeaa.littledetails.particle;
+package com.axialeaa.littledetails.particle.environment;
 
-import com.axialeaa.littledetails.MainEntrypoint;
+import com.axialeaa.littledetails.helpers.ParticleLogic;
 import fi.dy.masa.malilib.config.options.ConfigColorList;
 import fi.dy.masa.malilib.util.Color4f;
 import net.fabricmc.api.EnvType;
@@ -16,7 +16,7 @@ public abstract class AbstractSandstormParticle extends AscendingParticle {
     protected AbstractSandstormParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, float scaleMultiplier, SpriteProvider spriteProvider, ConfigColorList colorList) {
         super(world, x, y, z, 0.5F, -0.1F, 0.5F, velocityX, velocityY, velocityZ, scaleMultiplier, spriteProvider, 1.0F, 20, 0.1F, true);
         this.setSpriteForAge(spriteProvider);
-        Color4f color = MainEntrypoint.getRandomColorFrom(random, colorList);
+        Color4f color = ParticleLogic.getRandomColorFrom(random, colorList);
         this.red = color.r;
         this.green = color.g;
         this.blue = color.b;

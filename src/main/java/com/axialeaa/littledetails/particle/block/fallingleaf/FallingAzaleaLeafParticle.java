@@ -1,4 +1,4 @@
-package com.axialeaa.littledetails.particle.fallingleaf;
+package com.axialeaa.littledetails.particle.block.fallingleaf;
 
 import com.axialeaa.littledetails.config.Configs;
 import net.fabricmc.api.EnvType;
@@ -8,13 +8,14 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
 @Environment(EnvType.CLIENT)
-public class FallingAzaleaPetalParticle extends CherryLeavesParticle {
+public class FallingAzaleaLeafParticle extends CherryLeavesParticle {
 
-    protected FallingAzaleaPetalParticle(ClientWorld world, double x, double y, double z, SpriteProvider spriteProvider) {
+    protected FallingAzaleaLeafParticle(ClientWorld world, double x, double y, double z, SpriteProvider spriteProvider) {
         super(world, x, y, z, spriteProvider);
         this.setSpriteForAge(spriteProvider);
-        this.alpha = Configs.Colors.FALLING_AZALEA_PETAL_PARTICLE_ALPHA.getIntegerValue() / 255.0F;
-        this.gravityStrength = (float)Configs.Constants.FALLING_PETAL_GRAVITY_CONSTANT.getDoubleValue();
+        this.alpha = Configs.Colors.FALLING_AZALEA_LEAF_PARTICLE_ALPHA.getIntegerValue() / 255.0F;
+        this.scale = (float)Configs.Constants.FALLING_LEAF_SCALE_CONSTANT.getDoubleValue();
+        this.setBoundingBoxSpacing(this.scale, this.scale);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class FallingAzaleaPetalParticle extends CherryLeavesParticle {
         }
 
         public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-            return new FallingAzaleaPetalParticle(world, x, y, z, spriteProvider);
+            return new FallingAzaleaLeafParticle(world, x, y, z, spriteProvider);
         }
     }
 

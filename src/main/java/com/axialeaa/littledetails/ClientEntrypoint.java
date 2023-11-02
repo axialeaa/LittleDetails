@@ -1,7 +1,16 @@
 package com.axialeaa.littledetails;
 
 import com.axialeaa.littledetails.particle.*;
-import com.axialeaa.littledetails.particle.fallingleaf.*;
+import com.axialeaa.littledetails.particle.block.AmethystTwinkleParticle;
+import com.axialeaa.littledetails.particle.block.GlowBerryShineParticle;
+import com.axialeaa.littledetails.particle.block.GlowstoneGlintParticle;
+import com.axialeaa.littledetails.particle.block.SeaLanternShimmerParticle;
+import com.axialeaa.littledetails.particle.block.fallingleaf.*;
+import com.axialeaa.littledetails.particle.environment.FireflyParticle;
+import com.axialeaa.littledetails.particle.environment.RedSandstormParticle;
+import com.axialeaa.littledetails.particle.environment.SandstormParticle;
+import com.axialeaa.littledetails.particle.reaction.RainRippleParticle;
+import com.axialeaa.littledetails.particle.reaction.SnoreParticle;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -21,6 +30,7 @@ public class ClientEntrypoint implements ClientModInitializer {
 		ParticleFactoryRegistry.getInstance().register(LittleDetailsParticleTypes.SEA_LANTERN_SHIMMER, SeaLanternShimmerParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(LittleDetailsParticleTypes.GLOW_BERRY_SHINE, GlowBerryShineParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(LittleDetailsParticleTypes.RAIN_RIPPLE, RainRippleParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(LittleDetailsParticleTypes.SNORE, SnoreParticle.Factory::new);
 
 		ParticleFactoryRegistry.getInstance().register(LittleDetailsParticleTypes.FIREFLY, FireflyParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(LittleDetailsParticleTypes.SANDSTORM, SandstormParticle.Factory::new);

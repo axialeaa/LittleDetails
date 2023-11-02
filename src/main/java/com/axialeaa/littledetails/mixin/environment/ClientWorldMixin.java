@@ -44,17 +44,27 @@ public abstract class ClientWorldMixin extends World {
 
     @Inject(method = "randomBlockDisplayTick", at = @At("HEAD"))
     public void randomBlockDisplayTick(int centerX, int centerY, int centerZ, int radius, Random random, Block block, BlockPos.Mutable pos, CallbackInfo ci) {
-        spawnEnvParticle(pos, fireflySatisfiesSetting(pos), Configs.Biomes.FIREFLY_PARTICLE_BIOMES, Configs.Particles.PARTICLE_FIREFLY, Configs.ParticleRarities.FIREFLY_PARTICLE_RARITY, LittleDetailsParticleTypes.FIREFLY);
-        spawnEnvParticle(pos, sandstormSatisfiesSetting(), Configs.Biomes.SANDSTORM_PARTICLE_BIOMES, Configs.Particles.PARTICLE_SANDSTORM, Configs.ParticleRarities.SANDSTORM_PARTICLE_RARITY, LittleDetailsParticleTypes.SANDSTORM);
-        spawnEnvParticle(pos, sandstormSatisfiesSetting(), Configs.Biomes.RED_SANDSTORM_PARTICLE_BIOMES, Configs.Particles.PARTICLE_RED_SANDSTORM, Configs.ParticleRarities.RED_SANDSTORM_PARTICLE_RARITY, LittleDetailsParticleTypes.RED_SANDSTORM);
-        spawnWorldSpawnParticle(pos);
+        createEnvParticle(pos, fireflySatisfiesSetting(pos), Configs.Biomes.FIREFLY_PARTICLE_BIOMES, Configs.Particles.PARTICLE_FIREFLY, Configs.ParticleRarities.FIREFLY_PARTICLE_RARITY, LittleDetailsParticleTypes.FIREFLY);
+        createEnvParticle(pos, sandstormSatisfiesSetting(), Configs.Biomes.SANDSTORM_PARTICLE_BIOMES, Configs.Particles.PARTICLE_SANDSTORM, Configs.ParticleRarities.SANDSTORM_PARTICLE_RARITY, LittleDetailsParticleTypes.SANDSTORM);
+        createEnvParticle(pos, sandstormSatisfiesSetting(), Configs.Biomes.RED_SANDSTORM_PARTICLE_BIOMES, Configs.Particles.PARTICLE_RED_SANDSTORM, Configs.ParticleRarities.RED_SANDSTORM_PARTICLE_RARITY, LittleDetailsParticleTypes.RED_SANDSTORM);
+        createWorldSpawnParticle(pos);
     }
 
     @Unique
     private boolean fireflySatisfiesSetting(BlockPos pos) {
         FireflySpawnMode fireflySpawnMode = (FireflySpawnMode)Configs.Generic.FIREFLY_SPAWN_MODE.getOptionListValue();
-        boolean isNight = this.getTimeOfDay() >= 14000 && this.getTimeOfDay() <= 22000;
-        boolean isWaterBelow = this.getFluidState(pos.down(3)).isIn(FluidTags.WATER);
+        boolean isNight = getTimeOfDay() >= 14000 && getTimeOfDay() <= 22000;
+        boolean isWaterBelow = false;
+        for (int i = 0; i < Configs.Generic.FIREFLY_WATER_CHECK_RANGE.getIntegerValue(); i++) {
+            BlockPos blockPos = pos.down(i);
+            if (this.getFluidState(blockPos).isIn(FluidTags.WATER)) {
+                isWaterBelow = true;
+                break;
+            }
+            else if (this.getBlockState(blockPos).isFullCube(this, blockPos))
+                break;
+        }
+
         return switch (fireflySpawnMode) {
             case ALWAYS -> true;
             case NIGHT -> isNight;
@@ -74,7 +84,7 @@ public abstract class ClientWorldMixin extends World {
     }
 
     @Unique
-    private void spawnEnvParticle(BlockPos pos, boolean condition, ConfigStringList biomesConfigList, ConfigBoolean particleEnabled, ConfigInteger particleRarity, DefaultParticleType particleType) {
+    private void createEnvParticle(BlockPos pos, boolean condition, ConfigStringList biomesConfigList, ConfigBoolean particleEnabled, ConfigInteger particleRarity, DefaultParticleType particleType) {
         boolean isValidSpawnLocation = !this.getBlockState(pos).isFullCube(this, pos) && this.getFluidState(pos).isEmpty() && !(this.getTopPosition(Heightmap.Type.MOTION_BLOCKING, pos).getY() > pos.getY());
         if (condition && isValidSpawnLocation && particleEnabled.getBooleanValue() && biomesConfigList.getStrings().size() > 0 && random.nextInt(particleRarity.getIntegerValue()) == 0)
             for (int i = 0; i < biomesConfigList.getStrings().size(); i++)
@@ -83,7 +93,7 @@ public abstract class ClientWorldMixin extends World {
     }
 
     @Unique
-    private void spawnWorldSpawnParticle(BlockPos pos) {
+    private void createWorldSpawnParticle(BlockPos pos) {
         if (Configs.Particles.PARTICLE_WORLD_SPAWN_CENTER.getBooleanValue() && Objects.equals(this.getSpawnPos(), BlockPos.ofFloored(pos.toCenterPos())) && random.nextInt(Configs.ParticleRarities.WORLD_SPAWN_CENTER_PARTICLE_RARITY.getIntegerValue()) == 0) {
             int blockOffsetX = random.nextInt(2) * 2 - 1;
             int blockOffsetZ = random.nextInt(2) * 2 - 1;

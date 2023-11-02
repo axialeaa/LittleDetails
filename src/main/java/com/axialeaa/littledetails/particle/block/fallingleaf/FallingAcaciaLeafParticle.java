@@ -1,7 +1,6 @@
-package com.axialeaa.littledetails.particle.fallingleaf;
+package com.axialeaa.littledetails.particle.block.fallingleaf;
 
 import com.axialeaa.littledetails.config.Configs;
-import com.axialeaa.littledetails.particle.AbstractFallingLeafParticle;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.Particle;

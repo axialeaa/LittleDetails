@@ -1,7 +1,7 @@
-package com.axialeaa.littledetails.particle;
+package com.axialeaa.littledetails.particle.block;
 
-import com.axialeaa.littledetails.MainEntrypoint;
 import com.axialeaa.littledetails.config.Configs;
+import com.axialeaa.littledetails.helpers.ParticleLogic;
 import fi.dy.masa.malilib.util.Color4f;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -11,7 +11,7 @@ import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
-public class SeaLanternShimmerParticle extends AnimatedParticle implements InterpretColorList {
+public class SeaLanternShimmerParticle extends AnimatedParticle {
 
     protected SeaLanternShimmerParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
         super(world, x, y, z, spriteProvider, 0.0125F);
@@ -20,7 +20,7 @@ public class SeaLanternShimmerParticle extends AnimatedParticle implements Inter
         this.velocityZ = velocityZ;
         this.scale *= 0.75F;
         this.maxAge = this.random.nextInt(20) + 40;
-        Color4f color = MainEntrypoint.getRandomColorFrom(random, Configs.Colors.SEA_LANTERN_SHIMMER_PARTICLE_COLORS);
+        Color4f color = ParticleLogic.getRandomColorFrom(random, Configs.Colors.SEA_LANTERN_SHIMMER_PARTICLE_COLORS);
         this.setTargetColor(color.intValue);
         this.alpha = color.a;
         this.setSpriteForAge(spriteProvider);

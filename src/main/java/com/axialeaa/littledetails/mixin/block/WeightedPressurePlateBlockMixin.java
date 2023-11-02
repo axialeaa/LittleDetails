@@ -18,7 +18,7 @@ public class WeightedPressurePlateBlockMixin extends BlockMixin {
 
     @Override
     public void injectedRandomDisplayTick(BlockState state, World world, BlockPos pos, Random random, CallbackInfo ci) {
-        if (Configs.Generic.REDSTONE_PARTICLES_ENABLED.getBooleanValue() && state.get(PressurePlateBlock.POWERED) && Configs.Particles.PARTICLE_PRESSURE_PLATE_DUST.getBooleanValue() && random.nextInt(Configs.ParticleRarities.PRESSURE_PLATE_DUST_PARTICLE_RARITY.getIntegerValue()) == 0) {
+        if (Configs.Generic.REDSTONE_PARTICLES_ENABLED.getBooleanValue() && Configs.Particles.PARTICLE_PRESSURE_PLATE_DUST.getBooleanValue() && random.nextInt(Configs.ParticleRarities.PRESSURE_PLATE_DUST_PARTICLE_RARITY.getIntegerValue()) == 0) {
             Direction direction = Direction.DOWN;
             int powerLevel = state.get(WeightedPressurePlateBlock.POWER);
             if (powerLevel != 0) {

@@ -1,4 +1,4 @@
-package com.axialeaa.littledetails.particle;
+package com.axialeaa.littledetails.particle.environment;
 
 import com.axialeaa.littledetails.config.Configs;
 import net.fabricmc.api.EnvType;
@@ -8,10 +8,10 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
 @Environment(EnvType.CLIENT)
-public class SandstormParticle extends AbstractSandstormParticle implements InterpretColorList {
+public class RedSandstormParticle extends AbstractSandstormParticle {
 
-    protected SandstormParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, float scaleMultiplier, SpriteProvider spriteProvider) {
-        super(world, x, y, z, velocityX, velocityY, velocityZ, scaleMultiplier, spriteProvider, Configs.Colors.SANDSTORM_PARTICLE_COLORS);
+    protected RedSandstormParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, float scaleMultiplier, SpriteProvider spriteProvider) {
+        super(world, x, y, z, velocityX, velocityY, velocityZ, scaleMultiplier, spriteProvider, Configs.Colors.RED_SANDSTORM_PARTICLE_COLORS);
     }
 
     @Environment(EnvType.CLIENT)
@@ -23,7 +23,7 @@ public class SandstormParticle extends AbstractSandstormParticle implements Inte
         }
 
         public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
-            return new SandstormParticle(clientWorld, d, e, f, Configs.Constants.SANDSTORM_XY_VELOCITY_CONSTANT.getDoubleValue(), -0.1, Configs.Constants.SANDSTORM_XY_VELOCITY_CONSTANT.getDoubleValue(), 1.5F, this.spriteProvider);
+            return new RedSandstormParticle(clientWorld, d, e, f, Configs.Constants.SANDSTORM_XY_VELOCITY_CONSTANT.getDoubleValue(), -0.1, Configs.Constants.SANDSTORM_XY_VELOCITY_CONSTANT.getDoubleValue(), 1.5F, this.spriteProvider);
         }
     }
 

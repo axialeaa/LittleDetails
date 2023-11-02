@@ -38,24 +38,24 @@ public class Configs implements IConfigHandler {
         public static final ConfigOptionList        FALLING_LEAF_MODE                       = new ConfigOptionList      ("fallingLeafMode",                     FallingLeafMode.ALL,                                            "Which leaves the falling fallingleaf particles can generate under.");
         public static final ConfigOptionList        SANDSTORM_WEATHER_MODE                  = new ConfigOptionList      ("sandstormWeatherMode",                SandstormWeatherMode.THUNDER,                                   "Which weather conditions sandstorms should abide by when forming.");
         public static final ConfigOptionList        FIREFLY_SPAWN_MODE                      = new ConfigOptionList      ("fireflySpawnMode",                    FireflySpawnMode.NIGHT_ABOVE_WATER,                             "Which world conditions fireflies should abide by when spawning.");
+        public static final ConfigInteger           FIREFLY_WATER_CHECK_RANGE               = new ConfigInteger         ("fireflyWaterCheckRange",              5,   1,   32,                       "The maximum number of blocks over water fireflies can spawn.\nDefault: 5");
 
         public static final ConfigDouble            EXPLOSION_FLASH_POWER_THRESHOLD         = new ConfigDouble          ("explosionFlashPowerThreshold",        2.0, 0.0, 32.0,                     "The minimum explosion strength required to produce flash particles.\n§6Note: 1.0 is ghast fireballs and wither skulls, 3.0 is creepers,\n§64.0 is TNT, 5.0 is beds/respawn anchors and 6.0 is\n§6end crystals and charged creepers!");
+        public static final ConfigBoolean           PLAYER_SNORING                          = new ConfigBoolean         ("playerSnoring",                       false,                                              "Whether players can emit snoring particles.");
 
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
             FALLING_LEAF_BIOME_TINT,
             WEIGHTED_PRESSURE_PLATE_POWER_COLORS,
             FIREFLY_DAMAGE,
-
             FALLING_LEAF_PARTICLES_ENABLED,
             REDSTONE_PARTICLES_ENABLED,
-
             OPEN_CONFIG_GUI,
-
             FALLING_LEAF_MODE,
             SANDSTORM_WEATHER_MODE,
             FIREFLY_SPAWN_MODE,
-
-            EXPLOSION_FLASH_POWER_THRESHOLD
+            FIREFLY_WATER_CHECK_RANGE,
+            EXPLOSION_FLASH_POWER_THRESHOLD,
+            PLAYER_SNORING
         );
 
         public static final List<IHotkey> HOTKEY_LIST = ImmutableList.of(
@@ -63,6 +63,7 @@ public class Configs implements IConfigHandler {
             FALLING_LEAF_PARTICLES_ENABLED,
             REDSTONE_PARTICLES_ENABLED
         );
+
     }
 
     public static class Particles {
@@ -100,6 +101,7 @@ public class Configs implements IConfigHandler {
         public static final ConfigBoolean   PARTICLE_BUBBLE_POP             = new ConfigBoolean("particleBubblePop",            false, "Enables bubbles popping when they reach the surface.");
         public static final ConfigBoolean   PARTICLE_RAIN_RIPPLE            = new ConfigBoolean("particleRainRipple",           false, "Enables rain producing circular ripples when hitting water.");
         public static final ConfigBoolean   PARTICLE_EXPLOSION_FLASH        = new ConfigBoolean("particleExplosionFlash",       false, "Enables large explosions flashing.\n§6Warning: lots of explosions at once may be hard to look at!\n§6Take care if you're photosensitive! <3");
+        public static final ConfigBoolean   PARTICLE_SNORE                  = new ConfigBoolean("particleSnore",                false, "Enables foxes, cats, bats and villagers emitting visible\nsnoring effects when sleeping.");
 
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
             PARTICLE_AMETHYST_TWINKLE,
@@ -107,7 +109,6 @@ public class Configs implements IConfigHandler {
             PARTICLE_SEA_LANTERN_SHIMMER,
             PARTICLE_GLOW_BERRY_SHINE,
             PARTICLE_JACK_O_LANTERN_FLAME,
-
             PARTICLE_FALLING_OAK_LEAF,
             PARTICLE_FALLING_SPRUCE_LEAF,
             PARTICLE_FALLING_BIRCH_LEAF,
@@ -117,23 +118,20 @@ public class Configs implements IConfigHandler {
             PARTICLE_FALLING_MANGROVE_LEAF,
             PARTICLE_FALLING_AZALEA_LEAF,
             PARTICLE_FALLING_AZALEA_PETAL,
-
             PARTICLE_REDSTONE_BLOCK_DUST,
             PARTICLE_BUTTON_DUST,
             PARTICLE_PRESSURE_PLATE_DUST,
             PARTICLE_TRIPWIRE_DUST,
-
             PARTICLE_WORLD_SPAWN_CENTER,
-
             PARTICLE_SANDSTORM,
             PARTICLE_RED_SANDSTORM,
-
             PARTICLE_FIREFLY,
-
             PARTICLE_BUBBLE_POP,
             PARTICLE_RAIN_RIPPLE,
-            PARTICLE_EXPLOSION_FLASH
+            PARTICLE_EXPLOSION_FLASH,
+            PARTICLE_SNORE
         );
+
     }
 
     public static class ParticleRarities {
@@ -166,13 +164,14 @@ public class Configs implements IConfigHandler {
 
         public static final ConfigInteger   FIREFLY_PARTICLE_RARITY                 = new ConfigInteger("fireflyParticleRarity",                500, 1, 2048,   "The chance per gametick of a firefly spawning for every\nvalid block position in 1/x.\nDefault: 500");
 
+        public static final ConfigInteger   SNORE_PARTICLE_RARITY                   = new ConfigInteger("snoreParticleRarity",                  30, 1, 512,     "The chance per gametick of a snore particle appearing in 1/x.\nDefault: 30");
+
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
             AMETHYST_TWINKLE_PARTICLE_RARITY,
             GLOWSTONE_GLINT_PARTICLE_RARITY,
             SEA_LANTERN_SHIMMER_PARTICLE_RARITY,
             GLOW_BERRY_SHINE_PARTICLE_RARITY,
             JACK_O_LANTERN_FLAME_PARTICLE_RARITY,
-
             FALLING_OAK_LEAF_PARTICLE_RARITY,
             FALLING_SPRUCE_LEAF_PARTICLE_RARITY,
             FALLING_BIRCH_LEAF_PARTICLE_RARITY,
@@ -182,32 +181,33 @@ public class Configs implements IConfigHandler {
             FALLING_MANGROVE_LEAF_PARTICLE_RARITY,
             FALLING_AZALEA_LEAF_PARTICLE_RARITY,
             FALLING_AZALEA_PETAL_PARTICLE_RARITY,
-
             REDSTONE_BLOCK_DUST_PARTICLE_RARITY,
             BUTTON_DUST_PARTICLE_RARITY,
             PRESSURE_PLATE_DUST_PARTICLE_RARITY,
             TRIPWIRE_DUST_PARTICLE_RARITY,
-
             WORLD_SPAWN_CENTER_PARTICLE_RARITY,
-
             SANDSTORM_PARTICLE_RARITY,
             RED_SANDSTORM_PARTICLE_RARITY,
-
-            FIREFLY_PARTICLE_RARITY
+            FIREFLY_PARTICLE_RARITY,
+            SNORE_PARTICLE_RARITY
         );
+
     }
 
     public static class Constants {
 
-        public static final ConfigDouble    FALLING_LEAF_GRAVITY_CONSTANT   = new ConfigDouble  ("fallingLeafGravityConstant",  3E-3, 0, 1, "The gravityStrength constant used for the falling\nfallingleaf particles.\nDefault: 0.003");
-        public static final ConfigDouble    FALLING_PETAL_GRAVITY_CONSTANT  = new ConfigDouble  ("fallingPetalGravityConstant", 5E-4, 0, 1, "The gravityStrength constant used for the falling\nazalea petal particles.\nDefault: 0.0005");
-        public static final ConfigDouble    SANDSTORM_XY_VELOCITY_CONSTANT  = new ConfigDouble  ("sandstormXYVelocityConstant", 0.4, 0, 1,  "The horizontal velocity constant used for the\nsandstorm particles.\nDefault: 0.4");
+        public static final ConfigDouble    FALLING_LEAF_GRAVITY_CONSTANT   = new ConfigDouble  ("fallingLeafGravityConstant",  3E-3,   0, 1,   "The gravityStrength constant used for the falling\nleaf particles.\nDefault: 0.003");
+        public static final ConfigDouble    FALLING_PETAL_GRAVITY_CONSTANT  = new ConfigDouble  ("fallingPetalGravityConstant", 5E-4,   0, 1,   "The gravityStrength constant used for the falling\nazalea petal particles.\nDefault: 0.0005");
+        public static final ConfigDouble    FALLING_LEAF_SCALE_CONSTANT     = new ConfigDouble  ("fallingLeafScaleConstant",    0.25,   0, 1,   "The scale constant used for the falling\nleaf and azalea petal particles.\nDefault: 0.25");
+        public static final ConfigDouble    SANDSTORM_XY_VELOCITY_CONSTANT  = new ConfigDouble  ("sandstormXYVelocityConstant", 0.4,    0, 1,   "The horizontal velocity constant used for the\nsandstorm particles.\nDefault: 0.4");
 
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
             FALLING_LEAF_GRAVITY_CONSTANT,
             FALLING_PETAL_GRAVITY_CONSTANT,
+            FALLING_LEAF_SCALE_CONSTANT,
             SANDSTORM_XY_VELOCITY_CONSTANT
         );
+
     }
 
     public static class Biomes {
@@ -220,30 +220,34 @@ public class Configs implements IConfigHandler {
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
             SANDSTORM_PARTICLE_BIOMES,
             RED_SANDSTORM_PARTICLE_BIOMES,
-
             FIREFLY_PARTICLE_BIOMES
         );
+
     }
 
     public static class Colors {
+        
+        public static final String COLOR_OPTION_SUFFIX = "\n§6Note: If the list is empty, the particle will be\n§6completely invisible (#00000000)!";
 
-        public static final ConfigColorList     AMETHYST_TWINKLE_PARTICLE_COLORS        = new ConfigColorList   ("amethystTwinkleParticleColors",       ImmutableList.of(Color4f.fromColor(0xFFFECBE6)),    "The list of colors from which the amethyst twinkle\nparticles will pick randomly when created.\n§6Note: If the list is empty, the particle will be\n§6completely invisible (#00000000)!");
-        public static final ConfigColorList     GLOWSTONE_GLINT_PARTICLE_COLORS         = new ConfigColorList   ("glowstoneGlintParticleColors",        ImmutableList.of(Color4f.fromColor(0xFFFFF0DA)),    "The list of colors from which the glowstone glint\nparticles will pick randomly when created.\n§6Note: If the list is empty, the particle will be\n§6completely invisible (#00000000)!");
-        public static final ConfigColorList     SEA_LANTERN_SHIMMER_PARTICLE_COLORS     = new ConfigColorList   ("seaLanternShimmerParticleColors",     ImmutableList.of(Color4f.fromColor(0xFFD0E3DB)),    "The list of colors from which the sea lantern shimmer\nparticles will pick randomly when created.\n§6Note: If the list is empty, the particle will be\n§6completely invisible (#00000000)!");
-        public static final ConfigColorList     GLOW_BERRY_SHINE_PARTICLE_COLORS        = new ConfigColorList   ("glowBerryShineParticleColors",        ImmutableList.of(Color4f.fromColor(0xFFF7E26B)),    "The list of colors from which the glow berry shine\nparticles will pick randomly when created.\n§6Note: If the list is empty, the particle will be\n§6completely invisible (#00000000)!");
+        public static final ConfigColorList     AMETHYST_TWINKLE_PARTICLE_COLORS        = new ConfigColorList   ("amethystTwinkleParticleColors",       ImmutableList.of(Color4f.fromColor(0xFFFECBE6)),    "The list of colors from which the amethyst twinkle\nparticles will pick randomly when created." + COLOR_OPTION_SUFFIX);
+        public static final ConfigColorList     GLOWSTONE_GLINT_PARTICLE_COLORS         = new ConfigColorList   ("glowstoneGlintParticleColors",        ImmutableList.of(Color4f.fromColor(0xFFFFF0DA)),    "The list of colors from which the glowstone glint\nparticles will pick randomly when created." + COLOR_OPTION_SUFFIX);
+        public static final ConfigColorList     SEA_LANTERN_SHIMMER_PARTICLE_COLORS     = new ConfigColorList   ("seaLanternShimmerParticleColors",     ImmutableList.of(Color4f.fromColor(0xFFD0E3DB)),    "The list of colors from which the sea lantern shimmer\nparticles will pick randomly when created." + COLOR_OPTION_SUFFIX);
+        public static final ConfigColorList     GLOW_BERRY_SHINE_PARTICLE_COLORS        = new ConfigColorList   ("glowBerryShineParticleColors",        ImmutableList.of(Color4f.fromColor(0xFFF7E26B)),    "The list of colors from which the glow berry shine\nparticles will pick randomly when created." + COLOR_OPTION_SUFFIX);
 
-        public static final ConfigColorList     FALLING_OAK_LEAF_PARTICLE_COLORS        = new ConfigColorList   ("fallingOakLeafParticleColors",        ImmutableList.of(Color4f.fromColor(0xFF59AE30)),    "The list of colors from which the falling oak fallingleaf\nparticles will pick randomly when created.\n§6Note: If the list is empty, the particle will be\n§6completely invisible (#00000000)!");
-        public static final ConfigColorList     FALLING_SPRUCE_LEAF_PARTICLE_COLORS     = new ConfigColorList   ("fallingSpruceLeafParticleColors",     ImmutableList.of(Color4f.fromColor(0xFF619961)),    "The list of colors from which the falling spruce fallingleaf\nparticles will pick randomly when created.\n§6Note: If the list is empty, the particle will be\n§6completely invisible (#00000000)!");
-        public static final ConfigColorList     FALLING_BIRCH_LEAF_PARTICLE_COLORS      = new ConfigColorList   ("fallingBirchLeafParticleColors",      ImmutableList.of(Color4f.fromColor(0xFF80A755)),    "The list of colors from which the falling birch fallingleaf\nparticles will pick randomly when created.\n§6Note: If the list is empty, the particle will be\n§6completely invisible (#00000000)!");
-        public static final ConfigColorList     FALLING_JUNGLE_LEAF_PARTICLE_COLORS     = new ConfigColorList   ("fallingJungleLeafParticleColors",     ImmutableList.of(Color4f.fromColor(0xFF30BB0B)),    "The list of colors from which the falling jungle fallingleaf\nparticles will pick randomly when created.\n§6Note: If the list is empty, the particle will be\n§6completely invisible (#00000000)!");
-        public static final ConfigColorList     FALLING_ACACIA_LEAF_PARTICLE_COLORS     = new ConfigColorList   ("fallingAcaciaLeafParticleColors",     ImmutableList.of(Color4f.fromColor(0xFFAEA42A)),    "The list of colors from which the falling acacia fallingleaf\nparticles will pick randomly when created.\n§6Note: If the list is empty, the particle will be\n§6completely invisible (#00000000)!");
-        public static final ConfigColorList     FALLING_DARK_OAK_LEAF_PARTICLE_COLORS   = new ConfigColorList   ("fallingDarkOakLeafParticleColors",    ImmutableList.of(Color4f.fromColor(0xFF59AE30)),    "The list of colors from which the falling spruce fallingleaf\nparticles will pick randomly when created.\n§6Note: If the list is empty, the particle will be\n§6completely invisible (#00000000)!");
-        public static final ConfigColorList     FALLING_MANGROVE_LEAF_PARTICLE_COLORS   = new ConfigColorList   ("fallingMangroveLeafParticleColors",   ImmutableList.of(Color4f.fromColor(0xFF8DB127)),    "The list of colors from which the falling mangrove fallingleaf\nparticles will pick randomly when created.\n§6Note: If the list is empty, the particle will be\n§6completely invisible (#00000000)!");
+        public static final ConfigColorList     FALLING_OAK_LEAF_PARTICLE_COLORS        = new ConfigColorList   ("fallingOakLeafParticleColors",        ImmutableList.of(Color4f.fromColor(0xFF59AE30)),    "The list of colors from which the falling oak fallingleaf\nparticles will pick randomly when created." + COLOR_OPTION_SUFFIX);
+        public static final ConfigColorList     FALLING_SPRUCE_LEAF_PARTICLE_COLORS     = new ConfigColorList   ("fallingSpruceLeafParticleColors",     ImmutableList.of(Color4f.fromColor(0xFF619961)),    "The list of colors from which the falling spruce fallingleaf\nparticles will pick randomly when created." + COLOR_OPTION_SUFFIX);
+        public static final ConfigColorList     FALLING_BIRCH_LEAF_PARTICLE_COLORS      = new ConfigColorList   ("fallingBirchLeafParticleColors",      ImmutableList.of(Color4f.fromColor(0xFF80A755)),    "The list of colors from which the falling birch fallingleaf\nparticles will pick randomly when created." + COLOR_OPTION_SUFFIX);
+        public static final ConfigColorList     FALLING_JUNGLE_LEAF_PARTICLE_COLORS     = new ConfigColorList   ("fallingJungleLeafParticleColors",     ImmutableList.of(Color4f.fromColor(0xFF30BB0B)),    "The list of colors from which the falling jungle fallingleaf\nparticles will pick randomly when created." + COLOR_OPTION_SUFFIX);
+        public static final ConfigColorList     FALLING_ACACIA_LEAF_PARTICLE_COLORS     = new ConfigColorList   ("fallingAcaciaLeafParticleColors",     ImmutableList.of(Color4f.fromColor(0xFFAEA42A)),    "The list of colors from which the falling acacia fallingleaf\nparticles will pick randomly when created." + COLOR_OPTION_SUFFIX);
+        public static final ConfigColorList     FALLING_DARK_OAK_LEAF_PARTICLE_COLORS   = new ConfigColorList   ("fallingDarkOakLeafParticleColors",    ImmutableList.of(Color4f.fromColor(0xFF59AE30)),    "The list of colors from which the falling spruce fallingleaf\nparticles will pick randomly when created." + COLOR_OPTION_SUFFIX);
+        public static final ConfigColorList     FALLING_MANGROVE_LEAF_PARTICLE_COLORS   = new ConfigColorList   ("fallingMangroveLeafParticleColors",   ImmutableList.of(Color4f.fromColor(0xFF8DB127)),    "The list of colors from which the falling mangrove fallingleaf\nparticles will pick randomly when created." + COLOR_OPTION_SUFFIX);
 
-        public static final ConfigColorList     SANDSTORM_PARTICLE_COLORS               = new ConfigColorList   ("sandstormParticleColors",             ImmutableList.of(Color4f.fromColor(0xFFE3DBB0)),    "The list of colors from which the sandstorm particles will\npick randomly when created.\n§6Note: If the list is empty, the particle will be\n§6completely invisible (#00000000)!");
-        public static final ConfigColorList     RED_SANDSTORM_PARTICLE_COLORS           = new ConfigColorList   ("redSandstormParticleColors",          ImmutableList.of(Color4f.fromColor(0xFFCB6E24)),    "The list of colors from which the red sandstorm particles\nwill pick randomly when created.\n§6Note: If the list is empty, the particle will be\n§6completely invisible (#00000000)!");
+        public static final ConfigColorList     SANDSTORM_PARTICLE_COLORS               = new ConfigColorList   ("sandstormParticleColors",             ImmutableList.of(Color4f.fromColor(0xFFE3DBB0)),    "The list of colors from which the sandstorm particles will\npick randomly when created." + COLOR_OPTION_SUFFIX);
+        public static final ConfigColorList     RED_SANDSTORM_PARTICLE_COLORS           = new ConfigColorList   ("redSandstormParticleColors",          ImmutableList.of(Color4f.fromColor(0xFFCB6E24)),    "The list of colors from which the red sandstorm particles\nwill pick randomly when created." + COLOR_OPTION_SUFFIX);
 
-        public static final ConfigColorList     FIREFLY_PARTICLE_COLORS                 = new ConfigColorList   ("fireflyParticleColors",               ImmutableList.of(Color4f.fromColor(0xFFD0FF00)),    "The list of colors from which fireflies will pick\nrandomly when spawned.\n§6Note: If the list is empty, the particle will be\n§6completely invisible (#00000000)!");
+        public static final ConfigColorList     FIREFLY_PARTICLE_COLORS                 = new ConfigColorList   ("fireflyParticleColors",               ImmutableList.of(Color4f.fromColor(0xFFD0FF00)),    "The list of colors from which fireflies will pick\nrandomly when spawned." + COLOR_OPTION_SUFFIX);
+
+        public static final ConfigColorList     SNORE_PARTICLE_COLORS                   = new ConfigColorList   ("snoreParticleColors",                 ImmutableList.of(Color4f.fromColor(0xFFFFFFFF)),    "The list of colors from which the snore particles will pick\nrandomly when created." + COLOR_OPTION_SUFFIX);
 
         public static final ConfigInteger       FALLING_AZALEA_LEAF_PARTICLE_ALPHA      = new ConfigInteger     ("fallingAzaleaLeafParticleAlpha",      255, 0, 255,             "The transparency of the falling azalea fallingleaf particles.\n§6Note: This doesn't have a color option because azalea leaves\n§6don't tint!");
         public static final ConfigInteger       FALLING_AZALEA_PETAL_PARTICLE_ALPHA     = new ConfigInteger     ("fallingAzaleaPetalParticleAlpha",     255, 0, 255,             "The transparency of the falling azalea petal particles.\n§6Note: This doesn't have a color option because azalea leaves\n§6don't tint!");
@@ -253,7 +257,6 @@ public class Configs implements IConfigHandler {
             GLOWSTONE_GLINT_PARTICLE_COLORS,
             SEA_LANTERN_SHIMMER_PARTICLE_COLORS,
             GLOW_BERRY_SHINE_PARTICLE_COLORS,
-
             FALLING_OAK_LEAF_PARTICLE_COLORS,
             FALLING_SPRUCE_LEAF_PARTICLE_COLORS,
             FALLING_BIRCH_LEAF_PARTICLE_COLORS,
@@ -261,15 +264,14 @@ public class Configs implements IConfigHandler {
             FALLING_ACACIA_LEAF_PARTICLE_COLORS,
             FALLING_DARK_OAK_LEAF_PARTICLE_COLORS,
             FALLING_MANGROVE_LEAF_PARTICLE_COLORS,
-
             SANDSTORM_PARTICLE_COLORS,
             RED_SANDSTORM_PARTICLE_COLORS,
-
+            SNORE_PARTICLE_COLORS,
             FIREFLY_PARTICLE_COLORS,
-
             FALLING_AZALEA_LEAF_PARTICLE_ALPHA,
             FALLING_AZALEA_PETAL_PARTICLE_ALPHA
         );
+
     }
 
     public static class Sounds {
@@ -281,6 +283,7 @@ public class Configs implements IConfigHandler {
             BUBBLE_POP_VOLUME,
             PITCHER_PLANT_CHOMP_VOLUME
         );
+
     }
 
 

@@ -1,7 +1,7 @@
-package com.axialeaa.littledetails.particle;
+package com.axialeaa.littledetails.particle.environment;
 
-import com.axialeaa.littledetails.MainEntrypoint;
 import com.axialeaa.littledetails.config.Configs;
+import com.axialeaa.littledetails.helpers.ParticleLogic;
 import fi.dy.masa.malilib.util.Color4f;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -21,11 +21,11 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 
 @Environment(EnvType.CLIENT)
-public class FireflyParticle extends AscendingParticle implements InterpretColorList {
+public class FireflyParticle extends AscendingParticle {
 
     protected FireflyParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, float scaleMultiplier, SpriteProvider spriteProvider) {
         super(world, x, y, z, 0.1F, -0.1F, 0.1F, velocityX, velocityY, velocityZ, scaleMultiplier, spriteProvider, 1.0F, 80, 0.0F, true);
-        Color4f color = MainEntrypoint.getRandomColorFrom(random, Configs.Colors.FIREFLY_PARTICLE_COLORS);
+        Color4f color = ParticleLogic.getRandomColorFrom(random, Configs.Colors.FIREFLY_PARTICLE_COLORS);
         this.red = color.r;
         this.green = color.g;
         this.blue = color.b;
@@ -53,11 +53,7 @@ public class FireflyParticle extends AscendingParticle implements InterpretColor
                     this.world.playSound(x, y, z, SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.BLOCKS, (float)Configs.Sounds.PITCHER_PLANT_CHOMP_VOLUME.getDoubleValue(), 0.9F + random.nextFloat() * 0.2F, true);
                 this.markDead();
             }
-            else if (this.world.getBlockState(blockPos).getBlock() instanceof CactusBlock || this.world.getBlockState(blockPos).isFullCube(world, blockPos)) {
-                this.world.addParticle(ParticleTypes.CLOUD, x, y, z, 0.0, 0.0, 0.0);
-                this.markDead();
-            }
-            else if (this.world.getFluidState(blockPos).isIn(FluidTags.WATER))
+            else if (this.world.getBlockState(blockPos).getBlock() instanceof CactusBlock || this.world.getBlockState(blockPos).isFullCube(world, blockPos) || this.world.getFluidState(blockPos).isIn(FluidTags.WATER))
                 this.markDead();
     }
 

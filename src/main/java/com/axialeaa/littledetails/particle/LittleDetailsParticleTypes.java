@@ -15,6 +15,7 @@ public class LittleDetailsParticleTypes {
     public static final DefaultParticleType SEA_LANTERN_SHIMMER = FabricParticleTypes.simple();
     public static final DefaultParticleType GLOW_BERRY_SHINE = FabricParticleTypes.simple();
     public static final DefaultParticleType RAIN_RIPPLE = FabricParticleTypes.simple();
+    public static final DefaultParticleType SNORE = FabricParticleTypes.simple();
 
     public static final DefaultParticleType FIREFLY = FabricParticleTypes.simple();
     public static final DefaultParticleType SANDSTORM = FabricParticleTypes.simple();
@@ -36,6 +37,7 @@ public class LittleDetailsParticleTypes {
         Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "sea_lantern_shimmer"), SEA_LANTERN_SHIMMER);
         Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "glow_berry_shine"), GLOW_BERRY_SHINE);
         Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "rain_ripple"), RAIN_RIPPLE);
+        Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "snore"), SNORE);
 
         Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "firefly"), FIREFLY);
         Registry.register(Registries.PARTICLE_TYPE, new Identifier(MOD_ID, "sandstorm"), SANDSTORM);

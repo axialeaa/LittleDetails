@@ -1,24 +1,19 @@
-package com.axialeaa.littledetails.particle.fallingleaf;
+package com.axialeaa.littledetails.particle.block.fallingleaf;
 
 import com.axialeaa.littledetails.config.Configs;
-import com.axialeaa.littledetails.particle.AbstractFallingLeafParticle;
-import fi.dy.masa.malilib.util.Color4f;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleFactory;
-import net.minecraft.client.particle.ParticleTextureSheet;
 import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
-import java.util.List;
-
 @Environment(EnvType.CLIENT)
-public class FallingMangroveLeafParticle extends AbstractFallingLeafParticle {
+public class FallingOakLeafParticle extends AbstractFallingLeafParticle {
 
-    protected FallingMangroveLeafParticle(ClientWorld world, double x, double y, double z, SpriteProvider spriteProvider) {
-        super(world, x, y, z, spriteProvider, Configs.Colors.FALLING_MANGROVE_LEAF_PARTICLE_COLORS);
+    protected FallingOakLeafParticle(ClientWorld world, double x, double y, double z, SpriteProvider spriteProvider) {
+        super(world, x, y, z, spriteProvider, Configs.Colors.FALLING_OAK_LEAF_PARTICLE_COLORS);
         this.setSpriteForAge(spriteProvider);
     }
 
@@ -31,7 +26,7 @@ public class FallingMangroveLeafParticle extends AbstractFallingLeafParticle {
         }
 
         public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-            return new FallingMangroveLeafParticle(world, x, y, z, spriteProvider);
+            return new FallingOakLeafParticle(world, x, y, z, spriteProvider);
         }
     }
 

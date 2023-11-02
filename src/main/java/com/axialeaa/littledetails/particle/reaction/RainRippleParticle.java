@@ -1,4 +1,4 @@
-package com.axialeaa.littledetails.particle;
+package com.axialeaa.littledetails.particle.reaction;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -17,11 +17,8 @@ import java.util.function.Consumer;
 @Environment(EnvType.CLIENT)
 public class RainRippleParticle extends SpriteBillboardParticle {
 
-    protected RainRippleParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-        super(world, x, y, z, 0.0, 0.0, 0.0);
-        this.velocityX = velocityX;
-        this.velocityY = velocityY;
-        this.velocityZ = velocityZ;
+    protected RainRippleParticle(ClientWorld world, double x, double y, double z) {
+        super(world, x, y, z);
         this.scale *= 1.5F;
         this.collidesWithWorld = false;
         this.maxAge = 30;
@@ -84,7 +81,7 @@ public class RainRippleParticle extends SpriteBillboardParticle {
         }
 
         public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-            RainRippleParticle rainRippleParticle = new RainRippleParticle(world, x, y, z, 0.0, 0.0, 0.0);
+            RainRippleParticle rainRippleParticle = new RainRippleParticle(world, x, y, z);
             rainRippleParticle.setSprite(this.spriteProvider);
             return rainRippleParticle;
         }
