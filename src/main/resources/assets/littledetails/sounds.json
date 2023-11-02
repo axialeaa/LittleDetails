@@ -1,0 +1,7 @@
+{
+  "ambient.deep_dark.loop": {
+    "sounds": [
+      { "name": "ambient/deep_dark/ambience", "stream": true, "volume": 1.0 }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "littledetails",
+	"version": "${version}",
+	"name": "Axia's Little Details",
+	"description": "Improving the visuals of the world, one detail at a time!",
+	"authors": [
+		"axialeaa"
+	],
+	"contact": {
+		"sources": "https://github.com/axialeaa/LittleDetails"
+	},
+	"license": "LGPLv3",
+	"icon": "assets/littledetails/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"main": [
+			"com.axialeaa.littledetails.MainEntrypoint"
+		],
+		"client": [
+			"com.axialeaa.littledetails.ClientEntrypoint"
+		],
+		"modmenu": [
+			"com.axialeaa.littledetails.compat.ModMenuImpl"
+		]
+	},
+	"accessWidener": "littledetails.accesswidener",
+	"mixins": [
+		"littledetails.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.22",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*",
+		"malilib": "0.16.x"
+	},
+	"suggests": {
+		"mod_menu": "*"
+	}
+}

@@ -1,0 +1,38 @@
+{
+    "littledetails.gui.title.configs": "Axia's Little Details Configs",
+
+    "littledetails.gui.button.config_gui.generic": "Generic",
+    "littledetails.gui.button.config_gui.particles": "Particles",
+    "littledetails.gui.button.config_gui.particle_rarities": "Particle Rarities",
+    "littledetails.gui.button.config_gui.constants": "Constants",
+    "littledetails.gui.button.config_gui.biomes": "Biomes",
+    "littledetails.gui.button.config_gui.colors": "Colors",
+    "littledetails.gui.button.config_gui.sounds": "Sounds",
+
+    "littledetails.hotkeys.category.generic_hotkeys": "Generic Hotkeys",
+
+
+
+    "littledetails.label.fallingleavesmode.all": "All",
+    "littledetails.label.fallingleavesmode.natural": "Natural",
+    "littledetails.label.fallingleavesmode.placed": "Placed",
+    "littledetails.label.fallingleavesmode.decaying": "Decaying",
+
+    "littledetails.label.sandstormweathermode.all": "All",
+    "littledetails.label.sandstormweathermode.rain": "Rain",
+    "littledetails.label.sandstormweathermode.rain_thunder": "Rain & Thunder",
+    "littledetails.label.sandstormweathermode.thunder": "Thunder",
+
+    "littledetails.label.fireflyspawnmode.always": "Always",
+    "littledetails.label.fireflyspawnmode.night": "Night",
+    "littledetails.label.fireflyspawnmode.above_water": "Above Water",
+    "littledetails.label.fireflyspawnmode.night_above_water": "Night & Above Water",
+
+
+
+    "resourcePack.littledetails:32x_upscale.name": "Little Details: 32x Upscale",
+    "resourcePack.littledetails:programmer_art.name": "Little Details: Programmer Art",
+
+    "resourcePack.littledetails:32x_upscale.description": "Based on §8https://faithfulpack.net",
+    "resourcePack.littledetails:programmer_art.description": "Based on the Programmer Art style."
+}
