@@ -1,4 +1,4 @@
-package com.axialeaa.littledetails.mixin.reaction;
+package com.axialeaa.littledetails.mixin.reaction.snore;
 
 import com.axialeaa.littledetails.config.Configs;
 import com.axialeaa.littledetails.helpers.ParticleLogic;

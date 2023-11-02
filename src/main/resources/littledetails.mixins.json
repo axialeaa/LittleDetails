@@ -16,14 +16,14 @@
     "block.TripwireHookBlockMixin",
     "block.WeightedPressurePlateBlockMixin",
     "environment.ClientWorldMixin",
-    "reaction.BatEntityMixin",
+    "reaction.snore.BatEntityMixin",
     "reaction.BubbleColumnUpParticleMixin",
-    "reaction.CatEntityMixin",
+    "reaction.snore.CatEntityMixin",
     "reaction.ExplosionMixin",
-    "reaction.FoxEntityMixin",
+    "reaction.snore.FoxEntityMixin",
     "reaction.RainSplashParticleMixin",
-    "reaction.PlayerEntityMixin",
-    "reaction.VillagerEntityMixin",
+    "reaction.snore.PlayerEntityMixin",
+    "reaction.snore.VillagerEntityMixin",
     "reaction.WaterBubbleParticleMixin"
   ]
 }

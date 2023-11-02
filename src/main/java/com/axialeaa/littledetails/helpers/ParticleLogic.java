@@ -7,7 +7,6 @@ import fi.dy.masa.malilib.util.Color4f;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
@@ -16,11 +15,11 @@ import java.util.List;
 
 public class ParticleLogic {
 
-    public static void createPop(World world, BlockPos pos, Random random) {
+    public static void createPop(World world, Random random, double x, double y, double z) {
         if (Configs.Particles.PARTICLE_BUBBLE_POP.getBooleanValue()) {
-            world.addParticle(ParticleTypes.BUBBLE_POP, pos.getX(), pos.getY(), pos.getZ(), 0.0, 0.0, 0.0);
+            world.addParticle(ParticleTypes.BUBBLE_POP, x, y, z, 0.0, 0.0, 0.0);
             if (Configs.Sounds.BUBBLE_POP_VOLUME.getDoubleValue() > 0)
-                world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, SoundCategory.BLOCKS, (float)Configs.Sounds.BUBBLE_POP_VOLUME.getDoubleValue(), 0.9F + random.nextFloat() * 0.15F, true);
+                world.playSound(x, y, z, SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, SoundCategory.BLOCKS, (float)Configs.Sounds.BUBBLE_POP_VOLUME.getDoubleValue(), 0.9F + random.nextFloat() * 0.15F, true);
         }
     }
 

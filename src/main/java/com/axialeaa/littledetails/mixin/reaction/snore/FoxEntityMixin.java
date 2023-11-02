@@ -1,4 +1,4 @@
-package com.axialeaa.littledetails.mixin.reaction;
+package com.axialeaa.littledetails.mixin.reaction.snore;
 
 import com.axialeaa.littledetails.helpers.ParticleLogic;
 import net.minecraft.entity.EntityType;
