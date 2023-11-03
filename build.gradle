@@ -26,7 +26,11 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation "fi.dy.masa.malilib:malilib-fabric-${project.minecraft_version}:${project.malilib_version}"
 
+	modImplementation "carpet:fabric-carpet:${project.carpet_mc_dependency}-${project.carpet_core_version}"
+
 	modCompileOnly "com.terraformersmc:modmenu:${project.mod_menu_version}"
+
+	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.2.0")))
 }
 
 processResources {

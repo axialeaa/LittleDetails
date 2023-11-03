@@ -1,8 +1,11 @@
 package com.axialeaa.littledetails.particle.block.fallingleaf;
 
 import com.axialeaa.littledetails.config.Configs;
+import com.axialeaa.littledetails.helpers.ParticleLogic;
+import fi.dy.masa.malilib.util.Color4f;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.particle.CherryLeavesParticle;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.SpriteProvider;
@@ -10,10 +13,17 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
 @Environment(EnvType.CLIENT)
-public class FallingSpruceLeafParticle extends AbstractFallingLeafParticle {
+public class FallingSpruceLeafParticle extends CherryLeavesParticle {
 
     protected FallingSpruceLeafParticle(ClientWorld world, double x, double y, double z, SpriteProvider spriteProvider) {
-        super(world, x, y, z, spriteProvider, Configs.Colors.FALLING_SPRUCE_LEAF_PARTICLE_COLORS);
+        super(world, x, y, z, spriteProvider);
+        Color4f color = ParticleLogic.getRandomColorFrom(random, Configs.Colors.FALLING_SPRUCE_LEAF_PARTICLE_COLORS);
+        this.red = color.r;
+        this.green = color.g;
+        this.blue = color.b;
+        this.alpha = color.a;
+        this.scale = (float)Configs.Constants.FALLING_LEAF_SCALE_CONSTANT.getDoubleValue();
+        this.setBoundingBoxSpacing(this.scale, this.scale);
         this.setSpriteForAge(spriteProvider);
     }
 

@@ -19,7 +19,7 @@ public abstract class FoxEntityMixin extends LivingEntity {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void honkMimi(CallbackInfo ci) {
-        ParticleLogic.createHonkMimi(this.isSleeping(), this.getEntityWorld(), this.getEyePos(), 0.03);
+        ParticleLogic.createHonkMimi(this.getEntityWorld(), this.getEyePos(), 0.03, this.isSleeping());
     }
 
 }

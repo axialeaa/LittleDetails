@@ -40,20 +40,21 @@ public class LeavesBlockMixin extends Block {
     @Inject(method = "randomDisplayTick", at = @At("HEAD"))
     private void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random, CallbackInfo ci) {
         if (Configs.Generic.FALLING_LEAF_PARTICLES_ENABLED.getBooleanValue() && !isFaceFullSquare(world.getBlockState(pos.down()).getCollisionShape(world, pos.down()), Direction.UP)) {
-            spawnLeafParticle(world, pos, random, PARTICLE_FALLING_OAK_LEAF, FALLING_OAK_LEAF_PARTICLE_RARITY, OAK_LEAVES, FALLING_OAK_LEAF);
-            spawnLeafParticle(world, pos, random, PARTICLE_FALLING_SPRUCE_LEAF, FALLING_SPRUCE_LEAF_PARTICLE_RARITY, SPRUCE_LEAVES, FALLING_SPRUCE_LEAF);
-            spawnLeafParticle(world, pos, random, PARTICLE_FALLING_BIRCH_LEAF, FALLING_BIRCH_LEAF_PARTICLE_RARITY, BIRCH_LEAVES, FALLING_BIRCH_LEAF);
-            spawnLeafParticle(world, pos, random, PARTICLE_FALLING_JUNGLE_LEAF, FALLING_JUNGLE_LEAF_PARTICLE_RARITY, JUNGLE_LEAVES, FALLING_JUNGLE_LEAF);
-            spawnLeafParticle(world, pos, random, PARTICLE_FALLING_ACACIA_LEAF, FALLING_ACACIA_LEAF_PARTICLE_RARITY, ACACIA_LEAVES, FALLING_ACACIA_LEAF);
-            spawnLeafParticle(world, pos, random, PARTICLE_FALLING_DARK_OAK_LEAF, FALLING_DARK_OAK_LEAF_PARTICLE_RARITY, DARK_OAK_LEAVES, FALLING_DARK_OAK_LEAF);
-            spawnLeafParticle(world, pos, random, PARTICLE_FALLING_MANGROVE_LEAF, FALLING_MANGROVE_LEAF_PARTICLE_RARITY, MANGROVE_LEAVES, FALLING_MANGROVE_LEAF);
-            spawnLeafParticle(world, pos, random, PARTICLE_FALLING_AZALEA_LEAF, FALLING_AZALEA_LEAF_PARTICLE_RARITY, AZALEA_LEAVES, FALLING_AZALEA_LEAF);
-            spawnLeafParticle(world, pos, random, PARTICLE_FALLING_AZALEA_PETAL, FALLING_AZALEA_PETAL_PARTICLE_RARITY, FLOWERING_AZALEA_LEAVES, FALLING_AZALEA_PETAL);
+            spawnLeafParticle(world, pos, OAK_LEAVES,               FALLING_OAK_LEAF,       PARTICLE_FALLING_OAK_LEAF,      FALLING_OAK_LEAF_PARTICLE_RARITY);
+            spawnLeafParticle(world, pos, SPRUCE_LEAVES,            FALLING_SPRUCE_LEAF,    PARTICLE_FALLING_SPRUCE_LEAF,   FALLING_SPRUCE_LEAF_PARTICLE_RARITY);
+            spawnLeafParticle(world, pos, BIRCH_LEAVES,             FALLING_BIRCH_LEAF,     PARTICLE_FALLING_BIRCH_LEAF,    FALLING_BIRCH_LEAF_PARTICLE_RARITY);
+            spawnLeafParticle(world, pos, JUNGLE_LEAVES,            FALLING_JUNGLE_LEAF,    PARTICLE_FALLING_JUNGLE_LEAF,   FALLING_JUNGLE_LEAF_PARTICLE_RARITY);
+            spawnLeafParticle(world, pos, ACACIA_LEAVES,            FALLING_ACACIA_LEAF,    PARTICLE_FALLING_ACACIA_LEAF,   FALLING_ACACIA_LEAF_PARTICLE_RARITY);
+            spawnLeafParticle(world, pos, DARK_OAK_LEAVES,          FALLING_DARK_OAK_LEAF,  PARTICLE_FALLING_DARK_OAK_LEAF, FALLING_DARK_OAK_LEAF_PARTICLE_RARITY);
+            spawnLeafParticle(world, pos, MANGROVE_LEAVES,          FALLING_MANGROVE_LEAF,  PARTICLE_FALLING_MANGROVE_LEAF, FALLING_MANGROVE_LEAF_PARTICLE_RARITY);
+            spawnLeafParticle(world, pos, AZALEA_LEAVES,            FALLING_AZALEA_LEAF,    PARTICLE_FALLING_AZALEA_LEAF,   FALLING_AZALEA_LEAF_PARTICLE_RARITY);
+            spawnLeafParticle(world, pos, FLOWERING_AZALEA_LEAVES,  FALLING_AZALEA_PETAL,   PARTICLE_FALLING_AZALEA_PETAL,  FALLING_AZALEA_PETAL_PARTICLE_RARITY);
         }
     }
 
     @Unique
-    private static void spawnLeafParticle(World world, BlockPos pos, Random random, ConfigBoolean particleEnabled, ConfigInteger particleRarity, Block leavesType, DefaultParticleType particleType) {
+    private static void spawnLeafParticle(World world, BlockPos pos, Block leavesType, DefaultParticleType particleType, ConfigBoolean particleEnabled, ConfigInteger particleRarity) {
+        Random random = world.getRandom();
         if (particleEnabled.getBooleanValue() && (world.getBlockState(pos).isOf(leavesType) && satisfiesSetting(world, pos)) && random.nextInt(particleRarity.getIntegerValue()) == 0)
             ParticleUtil.spawnParticle(world, pos, random, particleType);
     }

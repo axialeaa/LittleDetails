@@ -4,17 +4,16 @@ import com.axialeaa.littledetails.config.Configs;
 import com.axialeaa.littledetails.helpers.ParticleLogic;
 import fi.dy.masa.malilib.config.options.ConfigColorList;
 import fi.dy.masa.malilib.util.Color4f;
+import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.particle.CherryLeavesParticle;
 import net.minecraft.client.particle.ParticleTextureSheet;
 import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.math.BlockPos;
 
-import static net.minecraft.client.color.world.BiomeColors.FOLIAGE_COLOR;
-
 public abstract class AbstractFallingLeafParticle extends CherryLeavesParticle {
 
-    public Color4f biomeColor = Color4f.fromColor(world.getColor(BlockPos.ofFloored(x, y, z), FOLIAGE_COLOR));
+    public Color4f biomeColor = Color4f.fromColor(world.getColor(BlockPos.ofFloored(x, y, z), BiomeColors.FOLIAGE_COLOR));
 
     protected AbstractFallingLeafParticle(ClientWorld clientWorld, double x, double y, double z, SpriteProvider spriteProvider, ConfigColorList colorList) {
         super(clientWorld, x, y, z, spriteProvider);
@@ -31,13 +30,6 @@ public abstract class AbstractFallingLeafParticle extends CherryLeavesParticle {
     @Override
     public ParticleTextureSheet getType() {
         return alpha < 1 ? ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT : ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-        biomeColor = Color4f.fromColor(world.getColor(BlockPos.ofFloored(x, y, z), FOLIAGE_COLOR));
-        // call this in the tick method so it updates as it travels
     }
 
 }

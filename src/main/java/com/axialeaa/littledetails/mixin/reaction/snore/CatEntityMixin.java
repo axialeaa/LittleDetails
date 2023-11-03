@@ -23,7 +23,7 @@ public abstract class CatEntityMixin extends Entity {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void honkMimi(CallbackInfo ci) {
-        ParticleLogic.createHonkMimi(this.isInSleepingPose() && this.isHeadDown(), this.getEntityWorld(), this.getEyePos(), 0.03);
+        ParticleLogic.createHonkMimi(this.getEntityWorld(), this.getEyePos(), 0.03, this.isInSleepingPose() && this.isHeadDown());
     }
 
 }

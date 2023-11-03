@@ -16,8 +16,7 @@ public class AmethystTwinkleParticle extends SpriteBillboardParticle {
     private final Color4f color = ParticleLogic.getRandomColorFrom(random, Configs.Colors.AMETHYST_TWINKLE_PARTICLE_COLORS);
 
     protected AmethystTwinkleParticle(ClientWorld world, double x, double y, double z, SpriteProvider spriteProvider) {
-        super(world, x, y, z, 0.0, 0.0, 0.0);
-        this.ascending = true;
+        super(world, x, y, z);
         this.scale *= 0.75F;
         this.red = color.r;
         this.green = color.g;

@@ -17,8 +17,10 @@ public class GlowBerryShineParticle extends SpriteBillboardParticle {
         super(world, x, y, z);
         this.scale *= 0.75F;
         Color4f color = ParticleLogic.getRandomColorFrom(random, Configs.Colors.GLOW_BERRY_SHINE_PARTICLE_COLORS);
-        this.red = color.r; this.green = color.g; this.blue = color.b; this.alpha = color.a;
-
+        this.red = color.r;
+        this.green = color.g;
+        this.blue = color.b;
+        this.alpha = color.a;
         this.maxAge = 40 + this.random.nextInt(20);
         this.collidesWithWorld = false;
         this.setSpriteForAge(spriteProvider);

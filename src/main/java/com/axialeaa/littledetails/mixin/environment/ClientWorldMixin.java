@@ -44,9 +44,9 @@ public abstract class ClientWorldMixin extends World {
 
     @Inject(method = "randomBlockDisplayTick", at = @At("HEAD"))
     public void randomBlockDisplayTick(int centerX, int centerY, int centerZ, int radius, Random random, Block block, BlockPos.Mutable pos, CallbackInfo ci) {
-        createEnvParticle(pos, fireflySatisfiesSetting(pos), Configs.Biomes.FIREFLY_PARTICLE_BIOMES, Configs.Particles.PARTICLE_FIREFLY, Configs.ParticleRarities.FIREFLY_PARTICLE_RARITY, LittleDetailsParticleTypes.FIREFLY);
-        createEnvParticle(pos, sandstormSatisfiesSetting(), Configs.Biomes.SANDSTORM_PARTICLE_BIOMES, Configs.Particles.PARTICLE_SANDSTORM, Configs.ParticleRarities.SANDSTORM_PARTICLE_RARITY, LittleDetailsParticleTypes.SANDSTORM);
-        createEnvParticle(pos, sandstormSatisfiesSetting(), Configs.Biomes.RED_SANDSTORM_PARTICLE_BIOMES, Configs.Particles.PARTICLE_RED_SANDSTORM, Configs.ParticleRarities.RED_SANDSTORM_PARTICLE_RARITY, LittleDetailsParticleTypes.RED_SANDSTORM);
+        createEnvParticle(pos, LittleDetailsParticleTypes.FIREFLY, Configs.Particles.PARTICLE_FIREFLY, Configs.ParticleRarities.FIREFLY_PARTICLE_RARITY, Configs.Biomes.FIREFLY_PARTICLE_BIOMES, fireflySatisfiesSetting(pos));
+        createEnvParticle(pos, LittleDetailsParticleTypes.SANDSTORM, Configs.Particles.PARTICLE_SANDSTORM, Configs.ParticleRarities.SANDSTORM_PARTICLE_RARITY, Configs.Biomes.SANDSTORM_PARTICLE_BIOMES, sandstormSatisfiesSetting());
+        createEnvParticle(pos, LittleDetailsParticleTypes.RED_SANDSTORM, Configs.Particles.PARTICLE_RED_SANDSTORM, Configs.ParticleRarities.RED_SANDSTORM_PARTICLE_RARITY, Configs.Biomes.RED_SANDSTORM_PARTICLE_BIOMES, sandstormSatisfiesSetting());
         createWorldSpawnParticle(pos);
     }
 
@@ -61,8 +61,7 @@ public abstract class ClientWorldMixin extends World {
                 isWaterBelow = true;
                 break;
             }
-            else if (this.getBlockState(blockPos).isFullCube(this, blockPos))
-                break;
+            else if (this.getBlockState(blockPos).isFullCube(this, blockPos)) break;
         }
 
         return switch (fireflySpawnMode) {
@@ -84,7 +83,7 @@ public abstract class ClientWorldMixin extends World {
     }
 
     @Unique
-    private void createEnvParticle(BlockPos pos, boolean condition, ConfigStringList biomesConfigList, ConfigBoolean particleEnabled, ConfigInteger particleRarity, DefaultParticleType particleType) {
+    private void createEnvParticle(BlockPos pos, DefaultParticleType particleType, ConfigBoolean particleEnabled, ConfigInteger particleRarity, ConfigStringList biomesConfigList, boolean condition) {
         boolean isValidSpawnLocation = !this.getBlockState(pos).isFullCube(this, pos) && this.getFluidState(pos).isEmpty() && !(this.getTopPosition(Heightmap.Type.MOTION_BLOCKING, pos).getY() > pos.getY());
         if (condition && isValidSpawnLocation && particleEnabled.getBooleanValue() && biomesConfigList.getStrings().size() > 0 && random.nextInt(particleRarity.getIntegerValue()) == 0)
             for (int i = 0; i < biomesConfigList.getStrings().size(); i++)

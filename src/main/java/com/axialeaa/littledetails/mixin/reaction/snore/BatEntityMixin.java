@@ -22,7 +22,7 @@ public abstract class BatEntityMixin extends Entity {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void honkMimi(CallbackInfo ci) {
-        ParticleLogic.createHonkMimi(this.isRoosting(), this.getEntityWorld(), this.getEyePos(), -0.03);
+        ParticleLogic.createHonkMimi(this.getEntityWorld(), this.getEyePos(), -0.03, this.isRoosting());
     }
 
 }

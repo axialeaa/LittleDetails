@@ -16,6 +16,7 @@ public class MainEntrypoint implements ModInitializer {
 	public void onInitialize() {
 		LittleDetailsParticleTypes.registerParticles();
 		InitializationHandler.getInstance().registerInitializationHandler(new InitHandler());
+
 		LOGGER.info(MOD_NAME + " initialized. It's all about the little things.");
 	}
 

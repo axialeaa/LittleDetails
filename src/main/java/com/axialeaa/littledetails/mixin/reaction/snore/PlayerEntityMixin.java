@@ -20,7 +20,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void honkMimi(CallbackInfo ci) {
-        ParticleLogic.createHonkMimi(Configs.Generic.PLAYER_SNORING.getBooleanValue() && this.isSleeping(), this.getEntityWorld(), this.getEyePos(), 0.03);
+        ParticleLogic.createHonkMimi(this.getEntityWorld(), this.getEyePos(), 0.03, Configs.Generic.PLAYER_SNORING.getBooleanValue() && this.isSleeping());
     }
 
 }
