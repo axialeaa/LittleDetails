@@ -8,7 +8,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
 public class AmethystTwinkleParticle extends SpriteBillboardParticle {
@@ -35,21 +34,12 @@ public class AmethystTwinkleParticle extends SpriteBillboardParticle {
     @Override
     public void tick() {
         super.tick();
-        this.alpha = (-this.age / (float)this.maxAge + 1) * color.a;
+        this.alpha = color.a * (-this.age / (float)this.maxAge + 1);
     }
 
+    @Override
     public int getBrightness(float tint) {
-        float f = ((float)this.age + tint) / (float)this.maxAge;
-        f = MathHelper.clamp(f, 0.0F, 1.0F);
-        int i = super.getBrightness(tint);
-        int j = i & 255;
-        int k = i >> 16 & 255;
-        j += (int)(f * 15.0F * 16.0F);
-        if (j > 240) {
-            j = 240;
-        }
-
-        return j | k << 16;
+        return (int)(this.alpha * (160 + random.nextInt(10)));
     }
 
     @Environment(EnvType.CLIENT)

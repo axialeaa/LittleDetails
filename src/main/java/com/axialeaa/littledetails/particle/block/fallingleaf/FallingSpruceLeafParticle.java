@@ -17,6 +17,7 @@ public class FallingSpruceLeafParticle extends CherryLeavesParticle {
 
     protected FallingSpruceLeafParticle(ClientWorld world, double x, double y, double z, SpriteProvider spriteProvider) {
         super(world, x, y, z, spriteProvider);
+        this.gravityStrength = (float)Configs.Constants.FALLING_LEAF_GRAVITY_CONSTANT.getDoubleValue();
         Color4f color = ParticleLogic.getRandomColorFrom(random, Configs.Colors.FALLING_SPRUCE_LEAF_PARTICLE_COLORS);
         this.red = color.r;
         this.green = color.g;

@@ -12,6 +12,7 @@ public class FallingAzaleaLeafParticle extends CherryLeavesParticle {
 
     protected FallingAzaleaLeafParticle(ClientWorld world, double x, double y, double z, SpriteProvider spriteProvider) {
         super(world, x, y, z, spriteProvider);
+        this.gravityStrength = (float)Configs.Constants.FALLING_LEAF_GRAVITY_CONSTANT.getDoubleValue();
         this.setSpriteForAge(spriteProvider);
         this.alpha = Configs.Colors.FALLING_AZALEA_LEAF_PARTICLE_ALPHA.getIntegerValue() / 255.0F;
         this.scale = (float)Configs.Constants.FALLING_LEAF_SCALE_CONSTANT.getDoubleValue();

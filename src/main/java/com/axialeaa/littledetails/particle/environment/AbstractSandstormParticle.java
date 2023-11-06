@@ -28,4 +28,10 @@ public abstract class AbstractSandstormParticle extends AscendingParticle {
         return alpha < 1 ? ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT : ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
     }
 
+    @Override
+    public void tick() {
+        super.tick();
+        if (this.onGround || this.velocityX == 0.0 || this.velocityZ == 0.0)
+            this.markDead();
+    }
 }

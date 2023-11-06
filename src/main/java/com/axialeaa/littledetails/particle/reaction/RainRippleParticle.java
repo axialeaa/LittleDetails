@@ -32,7 +32,7 @@ public class RainRippleParticle extends SpriteBillboardParticle {
     @Override
     public void tick() {
         super.tick();
-        this.alpha = (-this.age / (float)this.maxAge + 1);
+        this.alpha = -this.age / (float)this.maxAge + 1;
     }
 
     public float getSize(float tickDelta) {
