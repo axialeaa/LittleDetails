@@ -1,4 +1,4 @@
-package com.axialeaa.littledetails.mixin.reaction;
+package com.axialeaa.littledetails.mixin.reaction.explosion_flash;
 
 import com.axialeaa.littledetails.helpers.ParticleLogic;
 import net.minecraft.world.World;

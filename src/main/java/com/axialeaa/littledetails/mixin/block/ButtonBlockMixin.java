@@ -20,10 +20,10 @@ public class ButtonBlockMixin extends BlockMixin {
         if (Configs.Generic.REDSTONE_PARTICLES_ENABLED.getBooleanValue() && state.get(ButtonBlock.POWERED) && Configs.Particles.PARTICLE_BUTTON_DUST.getBooleanValue() && random.nextInt(Configs.ParticleRarities.BUTTON_DUST_PARTICLE_RARITY.getIntegerValue()) == 0) {
             Direction direction = state.get(ButtonBlock.FACING).getOpposite();
             Direction direction2 = WallMountedBlock.getDirection(state).getOpposite();
-            double d = (double)pos.getX() + 0.5 + 0.1 * (double)direction.getOffsetX() + 0.2 * (double)direction2.getOffsetX();
-            double e = (double)pos.getY() + 0.5 + 0.1 * (double)direction.getOffsetY() + 0.2 * (double)direction2.getOffsetY();
-            double f = (double)pos.getZ() + 0.5 + 0.1 * (double)direction.getOffsetZ() + 0.2 * (double)direction2.getOffsetZ();
-            world.addParticle(new DustParticleEffect(DustParticleEffect.RED, 1.0F), d, e, f, 0.0, 0.0, 0.0);
+            double x = (double)pos.getX() + 0.5 + 0.1 * (double)direction.getOffsetX() + 0.2 * (double)direction2.getOffsetX();
+            double y = (double)pos.getY() + 0.5 + 0.1 * (double)direction.getOffsetY() + 0.2 * (double)direction2.getOffsetY();
+            double z = (double)pos.getZ() + 0.5 + 0.1 * (double)direction.getOffsetZ() + 0.2 * (double)direction2.getOffsetZ();
+            world.addParticle(new DustParticleEffect(DustParticleEffect.RED, 1.0F), x, y, z, 0.0, 0.0, 0.0);
         }
     }
 

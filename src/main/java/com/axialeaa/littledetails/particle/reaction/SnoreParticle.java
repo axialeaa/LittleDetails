@@ -30,6 +30,11 @@ public class SnoreParticle extends SpriteBillboardParticle {
         return alpha < 1 ? ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT : ParticleTextureSheet.PARTICLE_SHEET_OPAQUE;
     }
 
+    public float getSize(float tickDelta) {
+        float f = ((float)this.age + tickDelta) / (float)this.maxAge;
+        return this.scale * (1.0F - f * f * 0.5F);
+    }
+
     @Override
     public void tick() {
         super.tick();

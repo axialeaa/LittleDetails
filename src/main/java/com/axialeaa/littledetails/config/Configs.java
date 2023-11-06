@@ -164,7 +164,7 @@ public class Configs implements IConfigHandler {
 
         public static final ConfigInteger   FIREFLY_PARTICLE_RARITY                 = new ConfigInteger("fireflyParticleRarity",                500, 1, 2048,   "The chance per gametick of a firefly spawning for every\nvalid block position in 1/x.\nDefault: 500");
 
-        public static final ConfigInteger   SNORE_PARTICLE_RARITY                   = new ConfigInteger("snoreParticleRarity",                  30, 1, 512,     "The chance per gametick of a snore particle appearing in 1/x.\nDefault: 30");
+        public static final ConfigInteger   SNORE_PARTICLE_RARITY                   = new ConfigInteger("snoreParticleRarity",                  80, 1, 512,     "The chance per gametick of a snore particle appearing in 1/x.\nDefault: 80");
 
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
             AMETHYST_TWINKLE_PARTICLE_RARITY,

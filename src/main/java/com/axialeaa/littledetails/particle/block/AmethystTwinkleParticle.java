@@ -23,7 +23,7 @@ public class AmethystTwinkleParticle extends SpriteBillboardParticle {
         this.blue = color.b;
         this.alpha = color.a;
         this.collidesWithWorld = false;
-        this.maxAge = this.random.nextInt(30) + 20;
+        this.maxAge = this.random.nextInt(10) + 20;
         this.setSpriteForAge(spriteProvider);
     }
 
@@ -35,7 +35,7 @@ public class AmethystTwinkleParticle extends SpriteBillboardParticle {
     @Override
     public void tick() {
         super.tick();
-        this.alpha = (-(1/(float)maxAge) * age + 1) * color.a;
+        this.alpha = (-this.age / (float)this.maxAge + 1) * color.a;
     }
 
     public int getBrightness(float tint) {

@@ -21,10 +21,10 @@ public class RedstoneBlockMixin extends BlockMixin {
                 BlockPos blockPos = pos.offset(direction);
                 if (!world.getBlockState(blockPos).isOpaqueFullCube(world, blockPos)) {
                     Direction.Axis axis = direction.getAxis();
-                    double randX = axis == Direction.Axis.X ? 0.5 + 0.5625 * (double)direction.getOffsetX() : (double)random.nextFloat();
-                    double randY = axis == Direction.Axis.Y ? 0.5 + 0.5625 * (double)direction.getOffsetY() : (double)random.nextFloat();
-                    double randZ = axis == Direction.Axis.Z ? 0.5 + 0.5625 * (double)direction.getOffsetZ() : (double)random.nextFloat();
-                    world.addParticle(DustParticleEffect.DEFAULT, (double)pos.getX() + randX, (double)pos.getY() + randY, (double)pos.getZ() + randZ, 0.0, 0.0, 0.0);
+                    double x = (double)pos.getX() + (axis == Direction.Axis.X ? 0.5 + 0.5625 * (double)direction.getOffsetX() : (double)random.nextFloat());
+                    double y = (double)pos.getY() + (axis == Direction.Axis.Y ? 0.5 + 0.5625 * (double)direction.getOffsetY() : (double)random.nextFloat());
+                    double z = (double)pos.getZ() + (axis == Direction.Axis.Z ? 0.5 + 0.5625 * (double)direction.getOffsetZ() : (double)random.nextFloat());
+                    world.addParticle(DustParticleEffect.DEFAULT, x, y, z, 0.0, 0.0, 0.0);
                 }
             }
     }

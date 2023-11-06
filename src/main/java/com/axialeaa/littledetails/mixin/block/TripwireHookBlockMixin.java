@@ -18,10 +18,10 @@ public class TripwireHookBlockMixin extends BlockMixin {
     public void injectedRandomDisplayTick(BlockState state, World world, BlockPos pos, Random random, CallbackInfo ci) {
         if (Configs.Generic.REDSTONE_PARTICLES_ENABLED.getBooleanValue() && state.get(TripwireHookBlock.POWERED) && Configs.Particles.PARTICLE_TRIPWIRE_DUST.getBooleanValue() && random.nextInt(Configs.ParticleRarities.TRIPWIRE_DUST_PARTICLE_RARITY.getIntegerValue()) == 0) {
             Direction direction = state.get(TripwireHookBlock.FACING).getOpposite();
-            double d = (double)pos.getX() + 0.5 + 0.1 * (double)direction.getOffsetX();
-            double e = (double)pos.getY() + 0.5 + 0.1 * (double)direction.getOffsetY();
-            double f = (double)pos.getZ() + 0.5 + 0.1 * (double)direction.getOffsetZ();
-            world.addParticle(new DustParticleEffect(DustParticleEffect.RED, 1.0F), d, e, f, 0.0, 0.0, 0.0);        }
+            double x = (double)pos.getX() + 0.5 + 0.1 * (double)direction.getOffsetX();
+            double y = (double)pos.getY() + 0.5 + 0.1 * (double)direction.getOffsetY();
+            double z = (double)pos.getZ() + 0.5 + 0.1 * (double)direction.getOffsetZ();
+            world.addParticle(new DustParticleEffect(DustParticleEffect.RED, 1.0F), x, y, z, 0.0, 0.0, 0.0);        }
     }
 
 }

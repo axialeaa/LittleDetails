@@ -1,4 +1,4 @@
-package com.axialeaa.littledetails.mixin.reaction;
+package com.axialeaa.littledetails.mixin.reaction.explosion_flash;
 
 import carpet.helpers.OptimizedExplosion;
 import carpet.mixins.ExplosionAccessor;
@@ -16,8 +16,7 @@ public class OptimizedExplosionMixin {
 
     @Inject(method = "doExplosionB", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSound(Lnet/minecraft/entity/player/PlayerEntity;DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FF)V"))
     private static void flashOnExplode(Explosion e, boolean spawnParticles, CallbackInfo ci, @Local ExplosionAccessor eAccess, @Local World world, @Local(ordinal = 0) boolean damagesTerrain) {
-        float power = eAccess.getRadius();
-        ParticleLogic.createExplosionFlash(world, eAccess.getX(), eAccess.getY(), eAccess.getZ(), power, damagesTerrain && spawnParticles);
+        ParticleLogic.createExplosionFlash(world, eAccess.getX(), eAccess.getY(), eAccess.getZ(), eAccess.getRadius(), damagesTerrain && spawnParticles);
     }
 
 }
